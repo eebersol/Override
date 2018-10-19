@@ -1,0 +1,22 @@
+Ici au lancement nous avons 2 prompt :
+
+	- un user
+	- un serial
+
+la length du user doit etre au minimum de 5 -> <auth + 62> cmp    DWORD PTR [ebp-0xc],0x5
+
+Ensuite dans gdb il faut esquive le ptrace -> b * 0x080487b5 <auth +109> -> jump *0x080487ed <auth +165>
+
+Ensuite a la fin on recupere le suppose serial pour un login donne :
+
+	b* 0x0804885e <auth +278> -> cmp    eax,DWORD PTR [ebp-0xc]
+
+	x/d $epb-0xc -> 6229050 -> pour AAAAAA en user
+
+	b * 0x08048866
+	jump * 0x08048866
+	x/d $epb-0xc -> 6229050 -> pour AAAAAA en user
+	0x08048866 <+286>:	cmp    eax,DWORD PTR [ebp-0x10]
+
+
+le prompte lvl7 apparait !

